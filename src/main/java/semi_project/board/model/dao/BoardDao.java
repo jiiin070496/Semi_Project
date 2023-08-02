@@ -1,6 +1,6 @@
 package semi_project.board.model.dao;
 
-import static semi_project.common.jdbc.jdbcTemplate.close;
+import static semi_project.common.jdbc.jdbcTemplate.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -51,10 +51,22 @@ public class BoardDao {
 	
 	//한 행 읽기
 	public BoardDto selectOne(Connection conn, int idx) {
-		System.out.println("[Board Dao selectOne] idx: " + idx);
 		BoardDto result = null;
-		//TODO
-		System.out.println("[Board Dao selectOne] return: " + result);
+		String query = "select IDX, TITLE, to_char(WRITE_DATE, 'yyyy-mm-dd hh24:mi:ss') WRITE_DATE, MID, BREF, BRE_LEVEL, BRE_STEP from BOARD"
+					+ " where idx = ?";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, idx);
+			rs = pstmt.executeQuery();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
 		return result;
 	}
 	

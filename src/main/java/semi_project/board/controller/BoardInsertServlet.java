@@ -7,43 +7,58 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import semi_project.board.model.service.BoardService;
 
-@WebServlet("/board/insert")
+
+@WebServlet("/BoardInsertServlet")
 public class BoardInsertServlet extends HttpServlet {
-
+	private static final long serialVersionUID = 1L;
+	private BoardService service = new BoardService();
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("/board/insert <<<<doget()>>>>");
+		System.out.println("/board/insert |||doGet() 진입|||" );
+	
+		//답글 작성시 참조 번호
 		String idxStr = request.getParameter("idx");
 		int idx = 0;
-		if(idxStr!=null && idxStr.equals("")) {
+		if(idxStr != null && !idxStr.equals("")) {
 			try {
 				idx = Integer.parseInt(idxStr);
-				request.setAttribute("idx", idxStr);
-			}catch(Exception e){
+				request.setAttribute("bIdx", idxStr);
+			}catch(Exception e) {
 				e.printStackTrace();
 			}
 		}
-		request.getRequestDispatcher("/WEB-INF/board/insert.jsp").forward(request, response);
-		
+		request.getRequestDispatcher("/WEB-INF/view/board/insert.jsp").forward(request, response);
+	
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("/board/insert !!POST!!");
-		String title = request.getParameter("title");
-		String content = request.getParameter("content");
-		String mid = "jiin0191";
-		
-		String idxStr = request.getParameter("idx");
+		// 답글작성시 참조글번호
+		String bnoStr = request.getParameter("bno");
+		System.out.println("bnoStr: "+ bnoStr);
 		int idx = 0;
-		if(idxStr!=null && !idxStr.equals("")) {
+		if(bnoStr != null && !bnoStr.equals("")) {
 			try {
-				idx = Integer.parseInt(idxStr);
-				
-			}catch(Exception e) {
+				bno = Integer.parseInt(bnoStr);
+			}catch (Exception e) {
 				e.printStackTrace();
-			}			
+				// 숫자로 못바꾸면 답글작성에 실패한것으로 간주함.
+				// 오류 페이지로 이동함.
+				// TODO
+			}
+		}
+		
+		// bno : 0이면 원본글, 그외 답글의 참조번호
+		int result  = service.insert(new BoardDto(bno, btitle, bcontent, mid));
+		if(result < 0) {
+			// 오류 발생
+			// 오류 페이지로 이동함.
+			// TODO
 		}
 		response.sendRedirect(request.getContextPath()+"/board/list");
+	}
+		
 	}
 
 }

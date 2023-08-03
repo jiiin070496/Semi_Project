@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ERROR</title>
+<title>결과 없음</title>
 </head>
 <body>
-
+	<h2>찾는 정보가 없습니다</h2>
+	<a href="${pageContext.request.contextPath }/board/list">다시 찾기</a>
 </body>
 </html>

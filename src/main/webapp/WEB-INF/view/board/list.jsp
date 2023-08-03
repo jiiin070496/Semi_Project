@@ -27,8 +27,8 @@
 		<div>작성자</div>
 		<div>작성일</div>
 		<div>옵션</div>
-<c:if test="${not empty boardList }">
-	<c:forEach items="${boardList } " var="vo">
+<c:if test="${not empty bList }">
+	<c:forEach items="${bList } " var="vo">
 			<div>${vo.idx }</div>
 			<div>
 				<div>${vo.mid }</div>

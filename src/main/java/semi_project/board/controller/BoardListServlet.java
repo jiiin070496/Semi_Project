@@ -31,8 +31,8 @@ public class BoardListServlet extends HttpServlet {
 		
 		
 		List<BoardDto> result = new BoardService().selectList();
-		request.setAttribute("boardList", result);
-		request.getRequestDispatcher("/WEB-INF/view/board/list.jsp").forward(request, response);
+		request.setAttribute("bList", result);
+		request.getRequestDispatcher("/WEB-INF/view/board/list").forward(request, response);
 		System.out.println(result);
 	
 	}

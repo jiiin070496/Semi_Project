@@ -18,7 +18,7 @@ public class BoardDao {
 		List<BoardDto> result = new ArrayList<BoardDto>();
 		
 		String subquery = "select IDX, TITLE, to_char(WRITE_DATE, 'yyyy-mm-dd hh24:mi:ss') WRITE_DATE, MID, BREF, BRE_LEVEL, BRE_STEP from BOARD";
-		subquery += "order by BREF desc, BRE_STEP asc";
+		//subquery += "order by BREF desc, BRE_STEP asc";
 		String query = subquery;
 		
 		PreparedStatement pstmt = null;

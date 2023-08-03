@@ -7,35 +7,43 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class BoardInsertServlet
- */
+
 @WebServlet("/board/insert")
 public class BoardInsertServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public BoardInsertServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		System.out.println("/board/insert <<<<doget()>>>>");
+		String idxStr = request.getParameter("idx");
+		int idx = 0;
+		if(idxStr!=null && idxStr.equals("")) {
+			try {
+				idx = Integer.parseInt(idxStr);
+				request.setAttribute("idx", idxStr);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		request.getRequestDispatcher("/WEB-INF/board/insert.jsp").forward(request, response);
+		
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		System.out.println("/board/insert !!POST!!");
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		String mid = "jiin0191";
+		
+		String idxStr = request.getParameter("idx");
+		int idx = 0;
+		if(idxStr!=null && !idxStr.equals("")) {
+			try {
+				idx = Integer.parseInt(idxStr);
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}			
+		}
+		response.sendRedirect(request.getContextPath()+"/board/list");
 	}
 
 }

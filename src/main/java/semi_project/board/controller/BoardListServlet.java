@@ -18,10 +18,22 @@ public class BoardListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("[냄쿵] Sessin Attribute");
+		System.out.println(request.getSession().getAttribute("SsLoginId"));
+		System.out.println(request.getAttribute("SsLoginId"));
+		
+		String msg = (String)request.getSession().getAttribute("successFailMsg");
+		if(msg!=null && !msg.equals("")) {
+			request.setAttribute("successFailMsg", msg);
+			request.getSession().removeAttribute("successFailMsg");
+		}
+		
+		
+		
 		List<BoardDto> result = new BoardService().selectList();
 		request.setAttribute("boardList", result);
 		request.getRequestDispatcher("/WEB-INF/view/board/list.jsp").forward(request, response);
-		System.out.println("result = "+result);
+		System.out.println(result);
 	
 	}
 

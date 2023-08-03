@@ -16,6 +16,7 @@ public class LoginDoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		String mid = request.getParameter("mid");
 		String mpwd = request.getParameter("mpwd");
 		MemberDto vo = new MemberDto(mid, mpwd);
@@ -24,7 +25,7 @@ public class LoginDoServlet extends HttpServlet {
 		
 		if(mpwd == null) {
 			//아이디 없음;
-		}else if{
+		}else if(mpwd.equals(result)){
 			System.out.println("로그인 성공");
 			request.setAttribute("SsLoginId", mid);
 			request.getSession().setAttribute("successMsg", "로그인 성공");

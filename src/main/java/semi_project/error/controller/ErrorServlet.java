@@ -1,4 +1,4 @@
-package semi_project.member.controller;
+package semi_project.error.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet("/login")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/error")
+public class ErrorServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
- 
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/view/member/login.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/view/error/errorPage.jsp").forward(request, response);
 	}
 
-//	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		
-//	}
 
 }

@@ -12,8 +12,7 @@ import java.util.List;
 public class MemberDao {
 
 	public List<MemberDto> selectList(Connection conn){
-		List<MemberDto> result = new ArrayList<MemberDto>();
-		
+		List<MemberDto> result = new ArrayList<MemberDto>();		
 		String query = "select * from member";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

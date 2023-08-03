@@ -19,6 +19,7 @@ public class BoardDto {
 	private int breLevel;
 	private int breStep;
 	
+	// selectOne dao --> controll --> view
 	public BoardDto(int idx, String title, String content, String write_date, String mid, int bref, int breLevel,
 			int breStep) {
 		this.idx = idx;
@@ -31,7 +32,7 @@ public class BoardDto {
 		this.breStep = breStep;
 	}
 	
-	//selectList(메인화면)엔 (content(내용) 없음)
+	//selectList(메인화면)엔 (content(내용) 없음) dao --> controll --> view
 	public BoardDto(int idx, String title, String write_date, String mid, int bref, int breLevel, int breStep) {
 		this.idx = idx;
 		this.title = title;
@@ -42,14 +43,14 @@ public class BoardDto {
 		this.breStep = breStep;
 	}
 	
-	//원본 글 등록
+	//원본 글 등록 view -> controller -> dao
 	public BoardDto(String title, String content, String mid) {		
 		this.title = title;
 		this.content = content;
 		this.mid = mid;
 	}
 
-	// 답글 등록
+	// 답글 등록 view -> controller -> dao
 	public BoardDto(int idx, String title, String content, String mid) {
 		this.idx = idx;
 		this.title = title;

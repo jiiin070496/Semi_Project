@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class BoardInsertServlet
+ * Servlet implementation class BoardDeleteServlet
  */
-@WebServlet("/board/insert")
-public class BoardInsertServlet extends HttpServlet {
+@WebServlet("/BoardDeleteServlet")
+public class BoardDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardInsertServlet() {
+    public BoardDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

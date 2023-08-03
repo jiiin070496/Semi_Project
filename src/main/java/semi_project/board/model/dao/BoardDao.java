@@ -17,7 +17,7 @@ public class BoardDao {
 		System.out.println("[Board Dao selectList]: ");
 		List<BoardDto> result = new ArrayList<BoardDto>();
 		
-		String subquery = "select IDX, TITLE, to_char(WRITE_DATE, 'yyyy-mm-dd hh24:mi:ss') BWRITE_DATE, MID, BREF, BRE_LEVEL, BRE_STEP from BOARD";
+		String subquery = "select IDX, TITLE, to_char(WRITE_DATE, 'yyyy-mm-dd hh24:mi:ss') WRITE_DATE, MID, BREF, BRE_LEVEL, BRE_STEP from BOARD";
 		subquery += "order by BREF desc, BRE_STEP asc";
 		String query = subquery;
 		
@@ -46,6 +46,7 @@ public class BoardDao {
 			close(rs);
 			close(pstmt);
 		}
+		System.out.println("[Board Dao selectList] return: " + result);
 		return result;
 	}
 	
@@ -74,16 +75,53 @@ public class BoardDao {
 	public int insert(Connection conn, BoardDto dto) {
 		System.out.println("[Board Dao insert] dto: " + dto);
 		int result = 0;
-		//TODO
+		String query = "";
+		
+		if(dto.getIdx()==0) { // 원본글 작성
+			query = "insert into BOARD values(SEQ_BOARD_IDX.nextval, ?, ?, defalut, ?, SEQ_BOARD_IDX.nextval, 0, 0)";
+		}else { // 답글 작성
+			query = "insert into BOARD values(SEQ_BOARD-IDX.nextval, ?, ?, default, ?, (select bref from board where idx=?), (select bre_level+1 from board where idx=?), (select bre_step+1 from board where idx=?))";
+		}
+		PreparedStatement pstmt = null;
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, dto.getTitle());
+			pstmt.setString(2, dto.getContent());
+			pstmt.setString(3, dto.getMid());
+			
+			if(dto.getIdx()!=0) {
+				pstmt.setInt(1, dto.getIdx());
+				pstmt.setInt(2, dto.getIdx());
+				pstmt.setInt(3, dto.getIdx());
+			}
+			result = pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}		
 		System.out.println("[Board Dao insert] return: " + result);
 		return result;
 	}
 	
-	//한 행 수정
+	//한 행 수정 dto나 경우에 따라 특정 컬럼값 받아옴.
 	public int update(Connection conn, BoardDto dto) {
 		System.out.println("[Board Dao update] dto: " + dto);
-		int result = 0;
-		//TODO
+		int result = -1; // 0도 정상 값일 수 있으므로 초기값은 -1
+		String query = "update board set BRE_STEP = BRE_STEP + 1 where BRE_STEP > (select bre_step from board where idx=?) and BREF = (select bref from board where idx=?)";
+		PreparedStatement pstmt = null;
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, dto.getIdx());
+			pstmt.setInt(2, dto.getIdx());
+			result = pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
 		System.out.println("[Board Dao update] return: " + result);
 		return result;
 	}

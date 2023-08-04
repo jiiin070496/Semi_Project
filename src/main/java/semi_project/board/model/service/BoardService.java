@@ -1,10 +1,5 @@
 package semi_project.board.model.service;
 
-import static kh.test.jdbckh.common.jdbc.JdbcTemplate.close;
-import static kh.test.jdbckh.common.jdbc.JdbcTemplate.commit;
-import static kh.test.jdbckh.common.jdbc.JdbcTemplate.getConnection;
-import static kh.test.jdbckh.common.jdbc.JdbcTemplate.rollback;
-import static kh.test.jdbckh.common.jdbc.JdbcTemplate.setAutoCommit;
 import static semi_project.common.jdbc.jdbcTemplate.*;
 
 import java.sql.Connection;
@@ -23,6 +18,7 @@ public class BoardService {
 		close(conn);
 		return result;
 	}
+	
 	public BoardDto selectOne(int idx){
 		BoardDto result = null;
 		Connection conn = getConnectionSemi();
@@ -30,6 +26,7 @@ public class BoardService {
 		close(conn);
 		return result;
 	}
+	
 	public int insert(BoardDto dto){
 		int result = 0;
 		Connection conn = getConnectionSemi();
@@ -50,5 +47,39 @@ public class BoardService {
 		close(conn);
 		return result;
 	}
+	//한 행 수정
+	public int update(BoardDto dto) {
+		int result = 0;
+		Connection conn = getConnectionSemi();
+		result = dao.update(conn, dto);
+		close(conn);
+		return result;
+	}
 	
+	public int delete(int idx) {
+		int result = 0;
+		Connection conn = getConnectionSemi();
+		result = dao.delete(conn, idx);
+		close(conn);
+		return result;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

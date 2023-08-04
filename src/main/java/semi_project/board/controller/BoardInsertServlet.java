@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import semi_project.board.model.service.BoardService;
 
 
-@WebServlet("/BoardInsertServlet")
+@WebServlet("/board/insert")
 public class BoardInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private BoardService service = new BoardService();
@@ -34,31 +34,30 @@ public class BoardInsertServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 답글작성시 참조글번호
-		String bnoStr = request.getParameter("bno");
-		System.out.println("bnoStr: "+ bnoStr);
+		System.out.println("/board/insert doPost!!!!!!");
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		String mid = "jiin0191"; //임시 작성자
+
+		String idxStr = request.getParameter("idx");
+		System.out.println("[idxStr: ]" + idxStr);
 		int idx = 0;
-		if(bnoStr != null && !bnoStr.equals("")) {
+		if(idxStr != null && !idxStr.equals("")) {
 			try {
-				bno = Integer.parseInt(bnoStr);
-			}catch (Exception e) {
+				idx = Integer.parseInt(idxStr);
+			}catch(Exception e){
 				e.printStackTrace();
-				// 숫자로 못바꾸면 답글작성에 실패한것으로 간주함.
-				// 오류 페이지로 이동함.
-				// TODO
 			}
-		}
-		
-		// bno : 0이면 원본글, 그외 답글의 참조번호
-		int result  = service.insert(new BoardDto(bno, btitle, bcontent, mid));
-		if(result < 0) {
-			// 오류 발생
-			// 오류 페이지로 이동함.
-			// TODO
 		}
 		response.sendRedirect(request.getContextPath()+"/board/list");
 	}
-		
-	}
-
+	
+	
+	
+	
+	
+	
+	
 }
+
+

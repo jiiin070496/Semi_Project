@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import semi_project.board.model.dto.BoardDto;
+import semi_project.board.model.dto.*;
 import semi_project.board.model.service.BoardService;
 
 
@@ -20,24 +20,27 @@ public class BoardListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("[냄쿵] Sessin Attribute");
 		System.out.println(request.getSession().getAttribute("SsLoginId"));
-		System.out.println(request.getAttribute("SsLoginId"));
-		
+		System.out.println(request.getAttribute("SsLoginId"));		
 		String msg = (String)request.getSession().getAttribute("successFailMsg");
 		if(msg!=null && !msg.equals("")) {
 			request.setAttribute("successFailMsg", msg);
 			request.getSession().removeAttribute("successFailMsg");
 		}
 		
-		
-		
+		// 1. request.getParameter()
+		// 2. service.selectList();
 		List<BoardDto> result = new BoardService().selectList();
+		// 3.
 		request.setAttribute("bList", result);
-		request.getRequestDispatcher("/WEB-INF/view/board/list").forward(request, response);
-		System.out.println(result);
+		// 4.
+		request.getRequestDispatcher("/WEB-INF/view/board/list.jsp").forward(request, response);
 	
 	}
 
 
-//	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {}
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//TODO
+		doGet(request, response);
+}
 
 }

@@ -16,7 +16,7 @@
   	<url-pattern>*.swf</url-pattern>
   </servlet-mapping>
   
-  <filter>
+ <filter>
   	<filter-name>EncodingFilter</filter-name>
   	<filter-class>semi_project.common.filter.EncodingFilter</filter-class>
   </filter>

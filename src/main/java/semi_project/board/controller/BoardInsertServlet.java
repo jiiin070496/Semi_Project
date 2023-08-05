@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import semi_project.board.model.dto.BoardDto;
 import semi_project.board.model.service.BoardService;
 
 
@@ -49,6 +50,14 @@ public class BoardInsertServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+		// idx : 0이면 원본글, 그외 답글의 참조번호
+				int result  = service.insert(new BoardDto(idx, title, content, mid));
+				if(result < 0) {
+					// 오류 발생
+					// 오류 페이지로 이동함.
+					// TODO
+				}
+		
 		response.sendRedirect(request.getContextPath()+"/board/list");
 	}
 	

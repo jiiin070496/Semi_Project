@@ -18,6 +18,37 @@ public class MemberService {
 		close(conn);
 		return result;
 	}
+	public MemberDto selectOne(int idx) {
+		MemberDto result = null;
+		Connection conn = getConnectionSemi();
+		result = dao.selectOne(conn, idx);
+		close(conn);
+		return result;
+	}
+	
+	public int insert(MemberDto dto) {
+		int result = 0;
+		Connection conn = getConnectionSemi();
+		result = dao.insert(conn, dto);
+		close(conn);
+		return result;
+	}
+	public int update(MemberDto dto) {
+		int result = 0;
+		Connection conn = getConnectionSemi();
+		result = dao.update(conn, dto);
+		close(conn);
+		return result;
+	}
+	public int delete(MemberDto dto) {
+		int result = 0;
+		Connection conn = getConnectionSemi();
+		result = dao.delete(conn, dto);
+		close(conn);
+		return result;
+	}
+	
+	
 	public int login(MemberDto vo){
 		int result = 0;
 		Connection conn = getConnectionSemi();

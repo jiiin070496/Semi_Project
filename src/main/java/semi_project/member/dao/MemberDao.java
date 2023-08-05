@@ -38,6 +38,62 @@ public class MemberDao {
 		return result;
 	}
 	
+	public MemberDto selectOne(Connection conn, int idx) {
+		System.out.println("[Member dao selectOne] idx" + idx);
+		MemberDto result = null;
+		//TODO
+		System.out.println("[Member Dao selectOne] return:" + result);
+		return result;
+	}
+	
+	public int insert(Connection conn, MemberDto dto) {
+		System.out.println("[Member dao insert] dto" + dto);
+		int result = 0;
+		//TODO
+		String query = "";
+		PreparedStatement pstmt = null;
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			//TODO
+			result = pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		System.out.println("[Member Dao insert] return:" + result);
+		return result;
+	}
+	
+	public int update(Connection conn, MemberDto dto) {
+		System.out.println("[Member dao update] dto" + dto);
+		int result = 0;
+		//TODO
+		String query = "";
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = conn.prepareStatement(query);
+			//TODO
+			result = pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		System.out.println("[Member Dao update] return:" + result);
+		return result;
+	}
+	
+	public int delete(Connection conn, MemberDto dto) {
+		System.out.println("[Member dao delete] dto" + dto);
+		int result = 0;		
+		//TODO
+		System.out.println("[Member Dao delete] return:" + result);
+		return result;
+	}
+	
 	public int login(Connection conn, MemberDto vo ) {
 		int result = 0;
 		String query = "select count(*) cnt from member where mid=? and mpwd=?";

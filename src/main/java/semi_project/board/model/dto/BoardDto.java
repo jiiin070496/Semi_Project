@@ -19,6 +19,9 @@ public class BoardDto {
 	private int breLevel;
 	private int breStep;
 	
+	public BoardDto() {
+	}
+	
 	// selectOne dao --> controll --> view
 	public BoardDto(int idx, String title, String content, String write_date, String mid, int bref, int breLevel,
 			int breStep) {
@@ -36,6 +39,7 @@ public class BoardDto {
 	public BoardDto(int idx, String title, String write_date, String mid, int bref, int breLevel, int breStep) {
 		this.idx = idx;
 		this.title = title;
+		//content 없음
 		this.write_date = write_date;
 		this.mid = mid;
 		this.bref = bref;

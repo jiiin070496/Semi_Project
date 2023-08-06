@@ -16,7 +16,7 @@ public class LoginDoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		System.out.println("[냄쿵]login.login post");
 		String mid = request.getParameter("mid");
 		String mpwd = request.getParameter("mpwd");
 		MemberDto vo = new MemberDto(mid, mpwd);

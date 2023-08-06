@@ -14,7 +14,7 @@ import semi_project.board.model.dto.BoardDto;
 public class BoardDao {
 	//모든 행 읽기
 	public List<BoardDto> selectList(Connection conn){
-		System.out.println("[Board Dao selectList]: ");
+		System.out.println("[-----Board Dao selectList-----] ");
 		List<BoardDto> result = new ArrayList<BoardDto>();
 		
 		String subquery = "select IDX, TITLE, to_char(WRITE_DATE, 'yyyy-mm-dd hh24:mi:ss') WRITE_DATE, MID, BREF, BRE_LEVEL, BRE_STEP from BOARD";
@@ -23,7 +23,6 @@ public class BoardDao {
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
 		try {
 			pstmt = conn.prepareStatement(query);
 			rs = pstmt.executeQuery();
@@ -37,7 +36,7 @@ public class BoardDao {
 					rs.getInt("BREF"),
 					rs.getInt("BRE_LEVEL"),
 					rs.getInt("BRE_STEP")					
-				);
+					);
 				result.add(dto);
 			}
 		}catch(SQLException e) {
@@ -80,7 +79,7 @@ public class BoardDao {
 		if(dto.getIdx()==0) { // 원본글 작성
 			query = "insert into BOARD values(SEQ_BOARD_IDX.nextval, ?, ?, defalut, ?, SEQ_BOARD_IDX.nextval, 0, 0)";
 		}else { // 답글 작성
-			query = "insert into BOARD values(SEQ_BOARD-IDX.nextval, ?, ?, default, ?, (select bref from board where idx=?), (select bre_level+1 from board where idx=?), (select bre_step+1 from board where idx=?))";
+			query = "insert into BOARD values(SEQ_BOARD_IDX.nextval, ?, ?, default, ?, (select bref from board where idx=?), (select bre_level+1 from board where idx=?), (select bre_step+1 from board where idx=?))";
 		}
 		PreparedStatement pstmt = null;
 		
@@ -91,9 +90,9 @@ public class BoardDao {
 			pstmt.setString(3, dto.getMid());
 			
 			if(dto.getIdx()!=0) {
-				pstmt.setInt(1, dto.getIdx());
-				pstmt.setInt(2, dto.getIdx());
-				pstmt.setInt(3, dto.getIdx());
+				pstmt.setInt(4, dto.getIdx());
+				pstmt.setInt(5, dto.getIdx());
+				pstmt.setInt(6, dto.getIdx());
 			}
 			result = pstmt.executeUpdate();
 		}catch(Exception e) {
@@ -102,6 +101,29 @@ public class BoardDao {
 			close(pstmt);
 		}		
 		System.out.println("[Board Dao insert] return: " + result);
+		return result;
+	}
+	
+	public int insertReply(Connection conn, BoardDto dto) {
+		System.out.println("[Board Dao insertReply] dto: " + dto);
+		int result = 0;
+		String query = "insert into BOARD values (SEQ_BOARD_IDX.nextval, ?, ?, default, ?, (select bref from board where idx=?), (select bre_level+1 from board where idx=?), (select bre_step+1 from board where idx=?))";
+		PreparedStatement pstmt = null;
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, dto.getTitle());
+			pstmt.setString(2, dto.getContent());
+			pstmt.setString(3, dto.getMid());
+			pstmt.setInt(4, dto.getIdx());
+			pstmt.setInt(5, dto.getIdx());
+			pstmt.setInt(6, dto.getIdx());
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		System.out.println("[Board Dao insertReply] return:" + result);
 		return result;
 	}
 	

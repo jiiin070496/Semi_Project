@@ -12,6 +12,8 @@ import java.util.List;
 public class MemberDao {
 
 	public List<MemberDto> selectList(Connection conn){
+		System.out.println("[---------Member Dao selectList---------]");
+
 		List<MemberDto> result = new ArrayList<MemberDto>();		
 		String query = "select * from member";
 		PreparedStatement pstmt = null;
@@ -35,6 +37,8 @@ public class MemberDao {
 			close(rs);
 			close(pstmt);
 		}
+		System.out.println("[Member Dao selectList] return:" + result);
+
 		return result;
 	}
 	
@@ -94,18 +98,19 @@ public class MemberDao {
 		return result;
 	}
 	
+	//추가
+	// 로그인 성공 - 1, 실패 - 0
 	public int login(Connection conn, MemberDto vo ) {
+		System.out.println("[-----Member Dao login-----] vo:" + vo);
 		int result = 0;
 		String query = "select count(*) cnt from member where mid=? and mpwd=?";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, vo.getMid());
 			pstmt.setString(2, vo.getMpwd());
 			rs = pstmt.executeQuery();
-			
 			if(rs.next()) {
 				result = rs.getInt("cnt");
 			}
@@ -115,10 +120,14 @@ public class MemberDao {
 			close(rs);
 			close(pstmt);
 		}
+		System.out.println("[-----Member Dao login-----] return:" + result);
+
 		return result;
 	}
-			
+	// 로그인 : mpwd를 return함. id 존재하지 않으면 return null;		
 	public String login(Connection conn, String mid) {
+		System.out.println("[-----Member Dao login-----] mid:" + mid);
+
 		String result = null;
 		String query = "select mpwd from member where mpwd=?";
 		PreparedStatement pstmt = null;
@@ -138,6 +147,7 @@ public class MemberDao {
 			close(rs);
 			close(pstmt);
 		}
+		System.out.println("[Member Dao login] return:" + result);
 		return result;
 	}
 

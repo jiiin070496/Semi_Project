@@ -16,9 +16,9 @@
 	</c:otherwise>
 </c:choose>
 	<div>
-		<form action="<%=request.getContextPath() %>/board/list" method="post">
+		<form action="<%=request.getContextPath() %>/board/insert" method="post">
 			<c:if test="${not empty idx }">
-				<input type="text" name="idx" value="${idx }">
+				<input type="hidden" name="idx" value="${idx }">
 			</c:if>
 			제목: <input type="text" name="title">
 			<br>

@@ -25,7 +25,7 @@ public class BoardInsertServlet extends HttpServlet {
 		if(idxStr != null && !idxStr.equals("")) {
 			try {
 				idx = Integer.parseInt(idxStr);
-				request.setAttribute("bIdx", idxStr);
+				request.setAttribute("idx", idxStr);
 			}catch(Exception e) {
 				e.printStackTrace();
 			}

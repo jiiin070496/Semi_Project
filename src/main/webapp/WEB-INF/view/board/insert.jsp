@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>새 글 등록</title>
+<title>글등록</title>
 </head>
 <body>
 <c:choose>
@@ -12,7 +12,7 @@
 		<h2>${idx }에 댓글 등록</h2>
 	</c:when>
 	<c:otherwise>
-		<h2>새 글 등록</h2>
+		<h2>글등록</h2>
 	</c:otherwise>
 </c:choose>
 	<div>

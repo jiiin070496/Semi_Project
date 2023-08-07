@@ -64,22 +64,3 @@ public class BoardService {
 		return result;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -13,7 +13,7 @@ public class BoardDto {
 	private int idx;
 	private String title;
 	private String content;
-	private String write_date;
+	private String writeDate;
 	private String mid;
 	private int bref;
 	private int breLevel;
@@ -23,12 +23,12 @@ public class BoardDto {
 	}
 	
 	// selectOne dao --> controll --> view
-	public BoardDto(int idx, String title, String content, String write_date, String mid, int bref, int breLevel,
+	public BoardDto(int idx, String title, String content, String writeDate, String mid, int bref, int breLevel,
 			int breStep) {
 		this.idx = idx;
 		this.title = title;
 		this.content = content;
-		this.write_date = write_date;
+		this.writeDate = writeDate;
 		this.mid = mid;
 		this.bref = bref;
 		this.breLevel = breLevel;
@@ -36,11 +36,11 @@ public class BoardDto {
 	}
 	
 	//selectList(메인화면)엔 (content(내용) 없음) dao --> controll --> view
-	public BoardDto(int idx, String title, String write_date, String mid, int bref, int breLevel, int breStep) {
+	public BoardDto(int idx, String title, String writeDate, String mid, int bref, int breLevel, int breStep) {
 		this.idx = idx;
 		this.title = title;
 		//content 없음
-		this.write_date = write_date;
+		this.writeDate = writeDate;
 		this.mid = mid;
 		this.bref = bref;
 		this.breLevel = breLevel;
@@ -64,7 +64,7 @@ public class BoardDto {
 
 	@Override
 	public String toString() {
-		return "BoardDto [idx=" + idx + ", title=" + title + ", content=" + content + ", write_date=" + write_date
+		return "BoardDto [idx=" + idx + ", title=" + title + ", content=" + content + ", writeDate=" + writeDate
 				+ ", mid=" + mid + ", bref=" + bref + ", breLevel=" + breLevel + ", breStep=" + breStep + "]";
 	}
 
@@ -92,12 +92,12 @@ public class BoardDto {
 		this.content = content;
 	}
 
-	public String getWrite_date() {
-		return write_date;
+	public String getWriteDate() {
+		return writeDate;
 	}
 
-	public void setWrite_date(String write_date) {
-		this.write_date = write_date;
+	public void setWriteDate(String writeDate) {
+		this.writeDate = writeDate;
 	}
 
 	public String getMid() {

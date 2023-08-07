@@ -16,23 +16,21 @@ public class LoginDoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("[냄쿵]login.login post");
+		System.out.println("[-----냄쿵login.login post-----]");
 		String mid = request.getParameter("mid");
 		String mpwd = request.getParameter("mpwd");
-		MemberDto vo = new MemberDto(mid, mpwd);
+		MemberDto dto = new MemberDto(mid, mpwd);
 		String result = new MemberService().login(mid);
 		String sendUrl = request.getContextPath();
 		
 		if(mpwd == null) {
-			//아이디 없음;
-		}else if(mpwd.equals(result)){
+			System.out.println("아이디를 다시 입력해주세요");
+		} else if(mpwd.equals(result)) {
 			System.out.println("로그인 성공");
-			request.setAttribute("SsLoginId", mid);
-			request.getSession().setAttribute("successMsg", "로그인 성공");
+			request.setAttribute("loginId", mid);
+			request.getSession().setAttribute("successFailMsg", "로그인 성공");
 			request.getSession().setAttribute("SsLoginId", mid);
 			sendUrl += "/board/list";
-		}else {
-			System.out.println("로그인 실패");
 		}
 		response.sendRedirect(sendUrl);
 	}

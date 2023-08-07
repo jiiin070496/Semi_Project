@@ -1,135 +1,128 @@
 package semi_project.board.model.dto;
 
+import java.util.List;
+
+
 public class BoardDto {
-//	IDX         NOT NULL NUMBER         
-//	TITLE      NOT NULL VARCHAR2(300)  
-//	CONTENT             VARCHAR2(4000) 
-//	WRITE_DATE NOT NULL TIMESTAMP(6)   
+//	BNO         NOT NULL NUMBER         
+//	BTITLE      NOT NULL VARCHAR2(300)  
+//	BCONTENT             VARCHAR2(4000) 
+//	BWRITE_DATE NOT NULL TIMESTAMP(6)   
 //	MID         NOT NULL VARCHAR2(20)   
 //	BREF        NOT NULL NUMBER         
 //	BRE_LEVEL   NOT NULL NUMBER         
 //	BRE_STEP    NOT NULL NUMBER
-	
-	private int idx;
-	private String title;
-	private String content;
-	private String writeDate;
+	private int bno;
+	private String btitle;
+	private String bcontent;
+	private String bwriteDate;
 	private String mid;
 	private int bref;
 	private int breLevel;
 	private int breStep;
-	
+	// 1:n 관계
+	//private List<String> filepathList;
+	private List<AttachFileDto> attachFileList;
+
 	public BoardDto() {
 	}
-	
 	// selectOne dao --> controll --> view
-	public BoardDto(int idx, String title, String content, String writeDate, String mid, int bref, int breLevel,
+	public BoardDto(int bno, String btitle, String bcontent, String bwriteDate, String mid, int bref, int breLevel,
 			int breStep) {
-		this.idx = idx;
-		this.title = title;
-		this.content = content;
-		this.writeDate = writeDate;
+		this.bno = bno;
+		this.btitle = btitle;
+		this.bcontent = bcontent;
+		this.bwriteDate = bwriteDate;
 		this.mid = mid;
 		this.bref = bref;
 		this.breLevel = breLevel;
 		this.breStep = breStep;
 	}
-	
-	//selectList(메인화면)엔 (content(내용) 없음) dao --> controll --> view
-	public BoardDto(int idx, String title, String writeDate, String mid, int bref, int breLevel, int breStep) {
-		this.idx = idx;
-		this.title = title;
-		//content 없음
-		this.writeDate = writeDate;
+	// selectList(content없음) dao --> controll --> view
+	public BoardDto(int bno, String btitle, String bwriteDate, String mid, int bref, int breLevel, int breStep) {
+		this.bno = bno;
+		this.btitle = btitle;
+		// content 없음
+		this.bwriteDate = bwriteDate;
 		this.mid = mid;
 		this.bref = bref;
 		this.breLevel = breLevel;
 		this.breStep = breStep;
 	}
+	// 원본글 등록 view --> controller --> dao
+	public BoardDto(String btitle, String bcontent, String mid) {
+		this.btitle = btitle;
+		this.bcontent = bcontent;
+		this.mid = mid;
+	}
+	// 답글 등록 view --> controller --> dao
+	public BoardDto(int bno, String btitle, String bcontent, String mid) {
+		this.bno = bno;  // bno는 답글 달려는 글번호
+		this.btitle = btitle;
+		this.bcontent = bcontent;
+		this.mid = mid;
+	}
+
 	
-	//원본 글 등록 view -> controller -> dao
-	public BoardDto(String title, String content, String mid) {		
-		this.title = title;
-		this.content = content;
-		this.mid = mid;
-	}
-
-	// 답글 등록 view -> controller -> dao
-	public BoardDto(int idx, String title, String content, String mid) {
-		this.idx = idx;
-		this.title = title;
-		this.content = content;
-		this.mid = mid;
-	}
-
 	@Override
 	public String toString() {
-		return "BoardDto [idx=" + idx + ", title=" + title + ", content=" + content + ", writeDate=" + writeDate
-				+ ", mid=" + mid + ", bref=" + bref + ", breLevel=" + breLevel + ", breStep=" + breStep + "]";
+		return "BoardDto [bno=" + bno + ", btitle=" + btitle + ", bcontent=" + bcontent + ", bwriteDate=" + bwriteDate
+				+ ", mid=" + mid + ", bref=" + bref + ", breLevel=" + breLevel + ", breStep=" + breStep
+				+ ", attachFileList=" + attachFileList + "]";
 	}
-
-	public int getIdx() {
-		return idx;
+	public int getBno() {
+		return bno;
 	}
-
-	public void setIdx(int idx) {
-		this.idx = idx;
+	public void setBno(int bno) {
+		this.bno = bno;
 	}
-
-	public String getTitle() {
-		return title;
+	public String getBtitle() {
+		return btitle;
 	}
-
-	public void setTitle(String title) {
-		this.title = title;
+	public void setBtitle(String btitle) {
+		this.btitle = btitle;
 	}
-
-	public String getContent() {
-		return content;
+	public String getBcontent() {
+		return bcontent;
 	}
-
-	public void setContent(String content) {
-		this.content = content;
+	public void setBcontent(String bcontent) {
+		this.bcontent = bcontent;
 	}
-
-	public String getWriteDate() {
-		return writeDate;
+	public String getBwriteDate() {
+		return bwriteDate;
 	}
-
-	public void setWriteDate(String writeDate) {
-		this.writeDate = writeDate;
+	public void setBwriteDate(String bwriteDate) {
+		this.bwriteDate = bwriteDate;
 	}
-
 	public String getMid() {
 		return mid;
 	}
-
 	public void setMid(String mid) {
 		this.mid = mid;
 	}
-
 	public int getBref() {
 		return bref;
 	}
-
 	public void setBref(int bref) {
 		this.bref = bref;
 	}
-
 	public int getBreLevel() {
 		return breLevel;
 	}
-
 	public void setBreLevel(int breLevel) {
 		this.breLevel = breLevel;
 	}
-
 	public int getBreStep() {
 		return breStep;
 	}
-
 	public void setBreStep(int breStep) {
 		this.breStep = breStep;
+	}
+	public List<AttachFileDto> getAttachFileList() {
+		return attachFileList;
+	}
+	public void setAttachFileList(List<AttachFileDto> attachFileList) {
+		this.attachFileList = attachFileList;
 	}
 	
 }

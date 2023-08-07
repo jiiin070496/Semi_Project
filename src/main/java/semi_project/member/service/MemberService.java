@@ -1,6 +1,8 @@
 package semi_project.member.service;
 
-import static semi_project.common.jdbc.jdbcTemplate.*;
+import static semi_project.common.jdbc.jdbcTemplate.close;
+import static semi_project.common.jdbc.jdbcTemplate.getConnectionSemi;
+
 
 import java.sql.Connection;
 import java.util.List;
@@ -49,10 +51,10 @@ public class MemberService {
 	}
 	
 	
-	public int login(MemberDto vo){
+	public int login(MemberDto dto){
 		int result = 0;
 		Connection conn = getConnectionSemi();
-		result = dao.login(conn, vo);
+		result = dao.login(conn, dto);
 		close(conn);
 		return result;
 	}

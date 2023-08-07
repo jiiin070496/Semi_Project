@@ -35,7 +35,7 @@ public class BoardInsertServlet extends HttpServlet {
 		System.out.println("/board/insert Post!!!!!!");
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
-		String mid = "jiin0960";
+		String mid = request.getParameter("mid");
 		
 		String idxStr = request.getParameter("idx");
 		System.out.println("idxStr : " + idxStr);

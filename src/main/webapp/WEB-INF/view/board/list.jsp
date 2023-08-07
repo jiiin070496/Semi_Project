@@ -14,6 +14,14 @@
 </head>
 <body>
 <div>
+[ ${successMsg } ] <hr>
+[ ${successFailMsg } ] <hr>
+<script>
+	var msg = '${successFailMsg}';
+	if(msg){
+		alert(msg);
+	}
+</script>
 <c:choose>
 	<c:when test="${not empty SsLoginId }">
 <a href="${pageContext.request.contextPath}/logout">로그아웃</a>

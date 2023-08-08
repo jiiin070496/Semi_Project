@@ -76,22 +76,4 @@ public class BoardService {
 		close(conn);
 		return result;
 	}
-	
-	//// 추가 
-	// 페이징 처리 + 검색
-	public int getTotalCount(String searchWord) {
-		int result = 0;
-		Connection conn = getConnectionSemi();
-		result = dao.getTotalCount(conn, searchWord);
-		close(conn);
-		return result;
-	}
-	public List<BoardDto> selectList(int currentPage, int pageSize, String searchWord){
-		List<BoardDto> result = null;
-		Connection conn = getConnectionSemi();
-		int totalCount = getTotalCount(searchWord);
-		result = dao.selectList(conn, currentPage, pageSize, totalCount, searchWord);
-		close(conn);
-		return result;
-	}
 }

@@ -19,7 +19,6 @@ public class MemberService {
 		close(conn);
 		return result;
 	}
-	// 한 행 읽기 - PK로where조건
 	public Member selectOne(int bno){
 		Member result = null;
 		Connection conn = getConnectionSemi();
@@ -27,15 +26,13 @@ public class MemberService {
 		close(conn);
 		return result;
 	}
-	// 한 행 삽입 - Member 자료형을 받아와야 함.
-	public int insert(Member dto){
+	public int insert(Member vo){
 		int result = 0;
 		Connection conn = getConnectionSemi();
-		result = dao.insert(conn, dto);
+		result = dao.insert(conn, vo);
 		close(conn);
 		return result;
 	}
-	// 한 행 수정 - Member 또는 경우에 따라서 특정 컬럼값만 받아오기도 함.
 	public int update(Member dto){
 		int result = 0;
 		Connection conn = getConnectionSemi();
@@ -43,7 +40,6 @@ public class MemberService {
 		close(conn);
 		return result;
 	}
-	// 한 행 삭제 - 주로 PK로 where조건
 	public int delete(int bno){
 		int result = 0;
 		Connection conn = getConnectionSemi();
@@ -61,6 +57,7 @@ public class MemberService {
 		close(conn);
 		return result;
 	}
+	
 	// login 
 	public String login(String mid) {
 		String result = null;

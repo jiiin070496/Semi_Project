@@ -15,15 +15,14 @@ public class LoginDoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("[ejkim ]login.login post");
+		System.out.println("[냄쿵 ]login.login post");
 		String mid=	request.getParameter("mid");
 		String mpwd = request.getParameter("mpwd");
 		Member vo = new Member(mid, mpwd);
 		String result = new MemberService().login(mid);
 		String sendUrl = request.getContextPath(); 
-		// TODO session
 		if(mpwd == null) {
-			// 아이디가 존재하지 않습니다.
+			// 아이디 없음
 		} else if(mpwd.equals(result)) {
 			System.out.println("로그인 성공");
 			request.setAttribute("loginId", mid);

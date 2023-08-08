@@ -12,7 +12,6 @@ import java.util.List;
 import semi_project.member.model.dto.Member;
 
 public class MemberDao {
-	// 모든 행 읽기
 	public List<Member> selectList(Connection conn) {
 		System.out.println("[Member Dao selectList]");
 		List<Member> result = new ArrayList<Member>();
@@ -42,7 +41,6 @@ public class MemberDao {
 		return result;
 	}
 
-	// 한 행 읽기 - PK로where조건
 	public Member selectOne(Connection conn, int bno) {
 		System.out.println("[Member Dao selectOne] bno:" + bno);
 		Member result = null;
@@ -51,17 +49,19 @@ public class MemberDao {
 		return result;
 	}
 
-	// 한 행 삽입 - Member 자료형을 받아와야 함.
 	public int insert(Connection conn, Member dto) {
 		System.out.println("[Member Dao insert] dto:" + dto);
 		int result = 0;
-		// TODO
-		String query = "";
-
+		String query = "insert into member "
+				+ " (mid, mpwd, mname, memail)"
+				+ " values(?, ?, ?, ?)";
 		PreparedStatement pstmt = null;
 		try {
 			pstmt = conn.prepareStatement(query);
-			// TODO
+			pstmt.setString(1, dto.getMid());
+			pstmt.setString(2, dto.getMpwd());
+			pstmt.setString(3, dto.getMname());
+			pstmt.setString(4, dto.getMemail());
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();

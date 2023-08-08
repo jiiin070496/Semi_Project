@@ -20,13 +20,12 @@ public class BoardDto {
 	private int bref;
 	private int breLevel;
 	private int breStep;
-	// 1:n 관계
-	//private List<String> filepathList;
+
 	private List<AttachFileDto> attachFileList;
 
 	public BoardDto() {
 	}
-	// selectOne dao --> controll --> view
+
 	public BoardDto(int bno, String btitle, String bcontent, String bwriteDate, String mid, int bref, int breLevel,
 			int breStep) {
 		this.bno = bno;
@@ -38,7 +37,6 @@ public class BoardDto {
 		this.breLevel = breLevel;
 		this.breStep = breStep;
 	}
-	// selectList(content없음) dao --> controll --> view
 	public BoardDto(int bno, String btitle, String bwriteDate, String mid, int bref, int breLevel, int breStep) {
 		this.bno = bno;
 		this.btitle = btitle;
@@ -49,13 +47,11 @@ public class BoardDto {
 		this.breLevel = breLevel;
 		this.breStep = breStep;
 	}
-	// 원본글 등록 view --> controller --> dao
 	public BoardDto(String btitle, String bcontent, String mid) {
 		this.btitle = btitle;
 		this.bcontent = bcontent;
 		this.mid = mid;
 	}
-	// 답글 등록 view --> controller --> dao
 	public BoardDto(int bno, String btitle, String bcontent, String mid) {
 		this.bno = bno;  // bno는 답글 달려는 글번호
 		this.btitle = btitle;

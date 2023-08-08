@@ -31,7 +31,6 @@ public class BoardInsertServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("/board/insert doGet()");
 		
-		// 답글작성시 참조글번호
 		String bnoStr = request.getParameter("bno");
 		int bno = 0;
 		if(bnoStr != null && !bnoStr.equals("")) {
@@ -40,26 +39,17 @@ public class BoardInsertServlet extends HttpServlet {
 				request.setAttribute("bno", bnoStr);
 			}catch (Exception e) {
 				e.printStackTrace();
-				// 숫자로 못바꾸면 답글작성에 실패한것으로 간주함.
-				// 오류 페이지로 이동함.
-				// TODO
 			}
 		}
 		
 		request.getRequestDispatcher("/WEB-INF/view/board/insert.jsp").forward(request, response);
 	}
 
-// file 이 request에 실려오는 경우 
-// common-io.jar + common-upload.jar 라는 jar 의 도움
-// cos.jar 의 도움을 받아야함.
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("/board/insert POST!!!!");
 		
-		// file이 저장될 위치는 서버WAS 안에 넣어줘야 하므로 위치는 getRealPath() 메소드를 활용함.
 		String uploadPath = getServletContext().getRealPath("resources/upload");
-		//System.out.println(getServletContext().getRealPath("./"));
 		System.out.println(uploadPath);
-		// 폴더만들기
 		File folder = new File(uploadPath);
 		if(!folder.exists()) {
 			folder.mkdirs();
@@ -74,7 +64,6 @@ public class BoardInsertServlet extends HttpServlet {
 				new DefaultFileRenamePolicy()// 동일한 이름이 업로드될 디렉토리에 있을때 새 이름 부여방식
 				);   // new MultipartRequest ()로 객체생성하면 이미 uploadPath 에 file들은 이미 저장 끝.
 		List<AttachFileDto> attachFileList = new ArrayList<AttachFileDto>();
-		// 이미 저장이된 파일이름들을 찾아오기
 		Enumeration<?> files = multiReq.getFileNames();
 		while (files.hasMoreElements()) {
 			String name = (String) files.nextElement();  // a1 // input type="file" name="a1"
@@ -94,7 +83,6 @@ public class BoardInsertServlet extends HttpServlet {
 		
 		String mid = (String)request.getSession().getAttribute("SsLoginId");  // TODO: 임시작성자 - 로그인한 id로 변경
 		
-		// 답글작성시 참조글번호
 		String bnoStr = multiReq.getParameter("bno");
 		System.out.println("bnoStr: "+ bnoStr);
 		int bno = 0;

@@ -17,19 +17,21 @@
 </head>
 <body>
 <div>
-[ <%= request.getSession().getAttribute("SsLoginId") %> ] <hr>
-[ <%= session.getAttribute("SsLoginId") %> ] <hr>
-[ ${SsLoginId } ] <hr>
-[ ${session.SsLoginId } ] <hr>
-[ EL내장객체명 : ${sessionScope.SsLoginId } ] <hr>
-[ ${successMsg } ] <hr>
-[ ${successFailMsg } ] <hr>
+<c:choose>
+	<c:when test="${not empty SsLoginId }">
+		[<%= request.getSession().getAttribute("SsLoginId") %>]님 반갑습니다 <hr>
+	</c:when>
+	<c:otherwise>
+	</c:otherwise>
+</c:choose>
+
 <script>
 	var msg = '${successFailMsg}';
 	if(msg){
 		alert(msg);
 	}
 </script>
+
 <c:choose>
 	<c:when test="${not empty SsLoginId }">
 <a href="${pageContext.request.contextPath}/logout">로그아웃</a>

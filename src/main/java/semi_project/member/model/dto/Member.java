@@ -26,6 +26,13 @@ public class Member {
 		this.mname = mname;
 		this.memail = memail;
 	}
+	public Member(String mid, String mpwd, String mname, String memail) {
+		this.mid = mid;
+		this.mpwd = mpwd;
+		this.mname = mname;
+		this.memail = memail;
+	}
+	
 	@Override
 	public String toString() {
 		return "Member [mid=" + mid + ", mpwd=" + mpwd + ", mname=" + mname + ", memail=" + memail + "]";

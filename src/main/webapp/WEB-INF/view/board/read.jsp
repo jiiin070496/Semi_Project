@@ -26,12 +26,7 @@
 		<br>
 		내용:<textarea rows="10" cols="50" name="bcontent" value="${bvo.btitle }" readonly></textarea>
 		<br>
-		<c:forEach items="${bvo.attachFileList }" var="filevo">
-			svg는 img 태그로 안보일 수 있음<br>
-			<object data="${pageContext.request.contextPath}/${filevo.filepath }" width="200"></object>
-			<br>
-		</c:forEach>
-		<hr>
+
 	<c:if test="${SsLoginId eq bvo.mid}">
 		<button type="button" id="btn-board-update">글 수정</button>
 		<button type="button" id="btn-board-delete">글 삭제</button>
@@ -40,18 +35,27 @@
 		<button type="button" id="btn-board-list">글목록으로 이동</button>
 	</div>
 	<script>
-		$("#btn-add-file").click(function(){
-			var cnt = $("[type=file]").length+1;
-			htmlVal = '<div>파일첨부(name에 field명 작성하지 말자!) : <input type="file" name="a-'+cnt+'"><button type="button" class="btn-delete-file">파일삭제</button></div>';
-			$("#add-file").append(htmlVal);
-			$(".btn-delete-file").off('click');
-			$(".btn-delete-file").on('click', function(){
-				$(this).parent().remove();
-			});
-		});
+	   $("#btn-board-delete").click(function(){
+           var bno = ${bvo.bno};
+           if (confirm("정말로 삭제하시겠습니까?")) {
+               $.ajax({
+                   type: "POST",
+                   url: "${pageContext.request.contextPath}/board/delete",
+                   data: { bno: bno },
+                   success: function (result){
+                       if (result > 0){
+                           alert("게시글 삭제에 실패했습니다.");
+                       } else{
+                           alert("게시글이 삭제되었습니다.");
+                           location.href = "${pageContext.request.contextPath}/board/list";
+                       }
+                   }
+               });
+           }
+       	});
 		$("#btn-board-list").click(function(){
 			location.href="${pageContext.request.contextPath}/board/list";
-		});
+		});		
 	</script>
 </body>
 </html>

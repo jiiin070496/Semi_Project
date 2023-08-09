@@ -19,6 +19,13 @@ public class MemberInsertDoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private MemberService service = new MemberService();
 	
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	if(request.getSession().getAttribute("mid") == null) {
+    		request.getRequestDispatcher("/WEB-INF/board/list").forward(request, response);
+    	}else {
+    		response.sendRedirect(request.getContextPath()+"/list");
+    	}
+    }
 	
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("[-----냄쿵 MemberInsert doPost!!-----]");

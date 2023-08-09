@@ -159,6 +159,13 @@ public class BoardDao {
 		try {
 			pstmt=conn.prepareStatement(query);
 			pstmt.setInt(1, bno);
+			result = pstmt.executeUpdate();
+			if(result > 0) {
+				System.out.println("삭제 성공");
+			}else {
+				System.out.println("삭제 실패");
+			}
+			
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally {

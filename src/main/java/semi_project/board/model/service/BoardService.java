@@ -60,6 +60,7 @@ public class BoardService {
 		close(conn);
 		return result;
 	}
+	
 	// 한 행 수정 - BoardDto 또는 경우에 따라서 특정 컬럼값만 받아오기도 함.
 	public int update(BoardDto dto){
 		int result = 0;
@@ -68,6 +69,7 @@ public class BoardService {
 		close(conn);
 		return result;
 	}
+	
 	// 한 행 삭제 - 주로 PK로 where조건
 	public int delete(int bno){
 		int result = 0;
@@ -76,4 +78,21 @@ public class BoardService {
 		close(conn);
 		return result;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

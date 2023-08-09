@@ -33,7 +33,6 @@
 		</c:forEach>
 		<hr>
 	<c:if test="${SsLoginId eq bvo.mid}">
-		로그인id와 글작성자 같으면 수정버튼 보이기
 		<button type="button" id="btn-board-update">글 수정</button>
 		<button type="button" id="btn-board-delete">글 삭제</button>
 	</c:if>

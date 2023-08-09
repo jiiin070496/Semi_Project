@@ -21,8 +21,6 @@
 	<c:when test="${not empty SsLoginId }">
 		[<%= request.getSession().getAttribute("SsLoginId") %>]님 반갑습니다 <hr>
 	</c:when>
-	<c:otherwise>
-	</c:otherwise>
 </c:choose>
 
 <script>

@@ -53,7 +53,7 @@ public class BoardDao {
 	public BoardDto selectOne(Connection conn, int bno) {
 		System.out.println("[Board Dao selectOne] bno:" + bno);
 		BoardDto result = null;
-		String query = " select BNO, BTITLE, bcontent, to_char(BWRITE_DATE, 'yyyy-mm-dd hh24:mi:ss') BWRITE_DATE, MID, BREF, BRE_LEVEL, BRE_STEP from BOARD ";
+		String query = " select BNO, BTITLE, BCONTENT, to_char(BWRITE_DATE, 'yyyy-mm-dd hh24:mi:ss') BWRITE_DATE, MID, BREF, BRE_LEVEL, BRE_STEP from BOARD ";
 		query += " where BNO=?"; 
 
 		PreparedStatement pstmt = null;
@@ -67,7 +67,7 @@ public class BoardDao {
 				result = new BoardDto(
 						rs.getInt("BNO"),
 						rs.getString("BTITLE"),
-						rs.getString("bcontent"),
+						rs.getString("BCONTENT"),
 						rs.getString("BWRITE_DATE"),
 						rs.getString("MID"),
 						rs.getInt("BREF"),
@@ -151,6 +151,43 @@ public class BoardDao {
 		return result;
 	}
 
+//	public int updateContent(Connection conn, int bno, String btitle, String bcontent) {
+//		System.out.println("[Board Dao updateContent] bno:" + bno);
+//		int result = -1;
+//		String query = "update board set btitle = ?, bcontent = ? where bno = ?";
+//		PreparedStatement pstmt = null;
+//		try {
+//			pstmt = conn.prepareStatement(query);
+//			pstmt.setString(1, btitle);
+//			pstmt.setString(2, bcontent);
+//			pstmt.setInt(3, bno);
+//		}catch(Exception e) {
+//			e.printStackTrace();
+//		}finally {
+//			close(pstmt);
+//		}
+//		return result;
+//	}
+
+	public int updateContent(Connection conn, BoardDto dto) {
+		System.out.println("[Board Dao updateContent] dto:" + dto);
+		int result = -1;
+		String query = "update board set btitle = ?, bcontent = ? where bno = ?";
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, dto.getBtitle());
+			pstmt.setString(2, dto.getBcontent());
+			pstmt.setInt(3, dto.getBno());
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		System.out.println("[Board Dao updateContent] return:" + result);
+		return result;
+	}
+	
 	public int delete(Connection conn, int bno) {
 		System.out.println("[Board Dao delete] bno:" + bno);
 		int result = 0;

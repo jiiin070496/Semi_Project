@@ -23,8 +23,7 @@ public class BoardDto {
 
 	private List<AttachFileDto> attachFileList;
 
-	public BoardDto() {
-	}
+	public BoardDto() {}
 
 	public BoardDto(int bno, String btitle, String bcontent, String bwriteDate, String mid, int bref, int breLevel,
 			int breStep) {
@@ -47,6 +46,13 @@ public class BoardDto {
 		this.breLevel = breLevel;
 		this.breStep = breStep;
 	}
+	
+	public BoardDto(int bno, String bcontent, String btitle) {
+		this.bno = bno;
+		this.bcontent = bcontent;
+		this.btitle = btitle;
+	}
+	
 	public BoardDto(String btitle, String bcontent, String mid) {
 		this.btitle = btitle;
 		this.bcontent = bcontent;

@@ -151,24 +151,6 @@ public class BoardDao {
 		return result;
 	}
 
-//	public int updateContent(Connection conn, int bno, String btitle, String bcontent) {
-//		System.out.println("[Board Dao updateContent] bno:" + bno);
-//		int result = -1;
-//		String query = "update board set btitle = ?, bcontent = ? where bno = ?";
-//		PreparedStatement pstmt = null;
-//		try {
-//			pstmt = conn.prepareStatement(query);
-//			pstmt.setString(1, btitle);
-//			pstmt.setString(2, bcontent);
-//			pstmt.setInt(3, bno);
-//		}catch(Exception e) {
-//			e.printStackTrace();
-//		}finally {
-//			close(pstmt);
-//		}
-//		return result;
-//	}
-
 	public int updateContent(Connection conn, BoardDto dto) {
 		System.out.println("[Board Dao updateContent] dto:" + dto);
 		int result = -1;

@@ -16,15 +16,16 @@ public class BoardDeleteServlet extends HttpServlet {
 	private BoardService service = new BoardService();
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("[-----냄쿵 삭제-----]");
 		int bno = Integer.parseInt(request.getParameter("bno"));
 		int result = service.delete(bno);
 		
-		if(result > 0) {
-			request.getSession().setAttribute("msg", "삭제되었습니다.");
-//			response.sendRedirect(request.getContextPath()+"/board/");
-		}else {
-			request.getSession().setAttribute("msg", "삭제 실패했습니다. 다시 시도해주세요");
-			response.sendRedirect(request.getContextPath()+"/board/read");
-		}
+//		if(result > 0) {
+//			request.getSession().setAttribute("msg", "삭제되었습니다.");
+//			response.sendRedirect(request.getContextPath()+"/board/list");
+//		}else {
+//			request.getSession().setAttribute("msg", "삭제 실패했습니다. 다시 시도해주세요");
+//			response.sendRedirect(request.getContextPath()+"/board/read");
+//		}
 	}
 }

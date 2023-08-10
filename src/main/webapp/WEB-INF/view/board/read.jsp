@@ -24,12 +24,12 @@
 		<input type="hidden" name="bno" value="${bvo.bno }">
 		제목:<input type="text" name="btitle" value="${bvo.btitle }" readonly>
 		<br>
-		내용:<textarea rows="10" cols="50" name="bcontent" value="${bvo.btitle }" readonly></textarea>
+		내용:<textarea rows="10" cols="50" name="bcontent" value="${bvo.bcontent }" readonly></textarea>
 		<br>
 
 	<c:if test="${SsLoginId eq bvo.mid}">
 		<button type="button" id="btn-board-update">글 수정</button>
-		<button type="button" id="btn-board-delete">글 삭제</button>
+		<button type="submit" id="btn-board-delete">글 삭제</button>
 	</c:if>
 		<button type="button" id="btn-board-reply">댓글달기</button>
 		<button type="button" id="btn-board-list">글목록으로 이동</button>
@@ -53,8 +53,12 @@
                });
            }
        	});
+	   
 		$("#btn-board-list").click(function(){
 			location.href="${pageContext.request.contextPath}/board/list";
+		});		
+		$("#btn-board-reply").click(function(){
+			location.href="${pageContext.request.contextPath}/board/insert?bno=${bvo.bno }";
 		});		
 	</script>
 </body>

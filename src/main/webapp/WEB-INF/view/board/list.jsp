@@ -11,7 +11,7 @@
 }
 .wrap-grid{
 	display:grid;
-	grid-template-columns: auto auto auto auto auto;
+	grid-template-columns: auto auto auto auto;
 }
 </style>
 </head>
@@ -46,7 +46,6 @@
 		<div>제목</div>
 		<div>작성자</div>
 		<div>작성일</div>
-		<div>옵션</div>	
 <c:if test="${not empty boardList }">
 	<c:forEach items="${boardList }" var="vo">
 		<div>${vo.bno }</div>
@@ -60,7 +59,6 @@
 		</div>
 		<div>${vo.mid }</div>
 		<div>${vo.bwriteDate }</div>
-		<div><a href="<%=request.getContextPath()%>/board/insert?bno=${vo.bno }">답글</a></div>
 	</c:forEach>
 </c:if>
 	</div>

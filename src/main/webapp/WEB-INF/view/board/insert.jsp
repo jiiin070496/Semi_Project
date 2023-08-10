@@ -33,12 +33,8 @@
 			<br>
 			내용:<textarea rows="10" cols="50" name="bcontent"></textarea>
 			<br>
-			<button type="button" id="btn-add-file">파일추가</button>
-			<div id="add-file">
-			</div>
 			<button type="submit">글 등록</button>
-		</form>
-		
+		</form>		
 		<button type="button" id="btn-board-list">글목록으로 이동</button>
 	</div>
 	<script>

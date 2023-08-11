@@ -245,7 +245,7 @@ public class BoardDao {
 	
 	// 첨부파일들 읽기
 	public List<AttachFileDto> selectAttachFileList(Connection conn, int bno) {
-		System.out.println("[Board Dao selectOne] bno:" + bno);
+//		System.out.println("[Board Dao selectOne] bno:" + bno);
 		List<AttachFileDto> result = new ArrayList<AttachFileDto>();
 		String query = " select filepath from Attach_File ";
 		query += " where BNO=?"; 
@@ -267,7 +267,7 @@ public class BoardDao {
 			close(rs);
 			close(pstmt);
 		}
-		System.out.println("[Board Dao selectOne] return:" + result);
+//		System.out.println("[Board Dao selectOne] return:" + result);
 		return result;
 	}
 

@@ -8,7 +8,6 @@
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 </head>
 <body>
- 
 <c:choose>
 	<c:when test="${not empty bvo }">
 		<h2>${bvo.bno }</h2>
@@ -24,7 +23,7 @@
 		<input type="hidden" name="bno" value="${bvo.bno }">
 		제목:<input type="text" name="btitle" value="${bvo.btitle }" readonly>
 		<br>
-		내용:<textarea rows="10" cols="50" name="bcontent" value="${bvo.bcontent }" readonly></textarea>
+		내용:<textarea rows="10" cols="50" name="bcontent" readonly>${bvo.bcontent }</textarea>
 		<br>
 
 	<c:if test="${SsLoginId eq bvo.mid}">
@@ -37,7 +36,7 @@
 	<script>
 	   $("#btn-board-delete").click(function(){
            var bno = ${bvo.bno};
-           if (confirm("정말로 삭제하시겠습니까?")) {
+           if (confirm("글 삭제하시겠습니까?")) {
                $.ajax({
                    type: "POST",
                    url: "${pageContext.request.contextPath}/board/delete",

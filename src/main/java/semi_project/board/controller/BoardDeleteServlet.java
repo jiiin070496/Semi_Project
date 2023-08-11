@@ -16,9 +16,9 @@ public class BoardDeleteServlet extends HttpServlet {
 	private BoardService service = new BoardService();
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("[-----냄쿵 삭제-----]");
-		int bno = Integer.parseInt(request.getParameter("bno"));
-		int result = service.delete(bno);
+//		System.out.println("[-----냄쿵 삭제-----]");
+//		int bno = Integer.parseInt(request.getParameter("bno"));
+//		int result = service.delete(bno);
 		
 //		if(result > 0) {
 //			request.getSession().setAttribute("msg", "삭제되었습니다.");

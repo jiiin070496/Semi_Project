@@ -33,22 +33,16 @@
 			<br>
 			내용:<textarea rows="10" cols="50" name="bcontent"></textarea>
 			<br>
-			<button type="submit">글 등록</button>
+			<button type="submit" id="btn-board-insert">글 등록</button>
 		</form>		
 		<button type="button" id="btn-board-list">글목록으로 이동</button>
 	</div>
 	<script>
-		$("#btn-add-file").click(function(){
-			var cnt = $("[type=file]").length+1;
-			htmlVal = '<div>파일첨부(name에 field명 작성하지 말자!) : <input type="file" name="a-'+cnt+'"><button type="button" class="btn-delete-file">파일삭제</button></div>';
-			$("#add-file").append(htmlVal);
-			$(".btn-delete-file").off('click');
-			$(".btn-delete-file").on('click', function(){
-				$(this).parent().remove();
-			});
-		});
 		$("#btn-board-list").click(function(){
 			location.href="${pageContext.request.contextPath}/board/list";
+		});
+		$("#btn-board-insert").click(function(){
+			alert("댓글 등록이 완료되었습니다.");
 		});
 	</script>
 </body>

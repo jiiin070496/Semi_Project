@@ -70,6 +70,13 @@ public class BoardService {
 		return result;
 	}
 	
+	public int updateContent(BoardDto dto) {
+		List<BoardDto> result = null;
+		Connection conn = getConnectionSemi();
+		result = dao.updateContent(conn, dto);
+		return result;
+	}
+	
 	// 한 행 삭제 - 주로 PK로 where조건
 	public int delete(int bno){
 		int result = 0;

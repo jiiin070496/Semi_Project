@@ -17,11 +17,8 @@ public class BoardUpdateContentServlet extends HttpServlet {
 	private BoardService service = new BoardService();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(request.getSession().getAttribute("bno")==null) {
-			request.getRequestDispatcher("/WEB-INF/view/board/list").forward(request, response);
-		}else {
-			response.sendRedirect(request.getContextPath()+"/board/update");		
-		}
+		int bno = Integer.parseInt(request.getParameter("bno"));
+		
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -20,19 +20,22 @@
 	</c:otherwise>
 </c:choose>
 	<div>
-		<input type="hidden" name="bno" value="${bvo.bno }">
-		제목:<input type="text" name="btitle" value="${bvo.btitle }" readonly>
-		<br>
-		내용:<textarea rows="10" cols="50" name="bcontent" readonly>${bvo.bcontent }</textarea>
-		<br>
-
-	<c:if test="${SsLoginId eq bvo.mid}">
-		<button type="button" id="btn-board-update">글 수정</button>
-		<button type="submit" id="btn-board-delete">글 삭제</button>
-	</c:if>
-		<button type="button" id="btn-board-reply">댓글달기</button>
-		<button type="button" id="btn-board-list">글목록으로 이동</button>
+ 		<form action="<%=request.getContextPath() %>/board/update" method="post">
+	        <input type="hidden" name="bno" value="${bvo.bno }">
+	        제목:<input type="text" name="btitle" value="${bvo.btitle }">
+	        <br>
+	        내용:<textarea rows="10" cols="50" name="bcontent">${bvo.bcontent }</textarea>
+	        <br>
+	
+	        <c:if test="${SsLoginId eq bvo.mid}">
+	            <button type="submit" id="btn-board-update">글 수정</button>
+	            <button type="button" id="btn-board-delete">글 삭제</button>
+	        </c:if>
+	        <button type="button" id="btn-board-reply">댓글달기</button>
+	        <button type="button" id="btn-board-list">글목록으로 이동</button>
+        </form>
 	</div>
+	
 	<script>
 	   $("#btn-board-delete").click(function(){
            var bno = ${bvo.bno};
@@ -52,7 +55,11 @@
                });
            }
        	});
-	   
+	   	
+		$("#btn-board-update").click(function(){
+	        location.href="${pageContext.request.contextPath}/board/update?bno=${bvo.bno}";
+ 		});		
+	   	
 		$("#btn-board-list").click(function(){
 			location.href="${pageContext.request.contextPath}/board/list";
 		});		

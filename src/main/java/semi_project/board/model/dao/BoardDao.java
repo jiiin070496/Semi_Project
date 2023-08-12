@@ -153,7 +153,7 @@ public class BoardDao {
 
 	public int updateContent(Connection conn, BoardDto dto) {
 		System.out.println("[Board Dao updateContent] dto:" + dto);
-		int result = -1;
+		int result = 0;
 		String query = "update board set btitle = ?, bcontent = ? where bno = ?";
 		PreparedStatement pstmt = null;
 		try {
@@ -161,6 +161,7 @@ public class BoardDao {
 			pstmt.setString(1, dto.getBtitle());
 			pstmt.setString(2, dto.getBcontent());
 			pstmt.setInt(3, dto.getBno());
+			result = pstmt.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {

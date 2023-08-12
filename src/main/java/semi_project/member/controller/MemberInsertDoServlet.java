@@ -11,9 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import semi_project.member.model.dto.Member;
 import semi_project.member.model.service.MemberService;
 
-/**
- * Servlet implementation class MemberInsertDoServlet
- */
 @WebServlet("/member/insert.do")
 public class MemberInsertDoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

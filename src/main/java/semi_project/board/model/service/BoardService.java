@@ -71,9 +71,10 @@ public class BoardService {
 	}
 	
 	public int updateContent(BoardDto dto) {
-		List<BoardDto> result = null;
+		int result = 0;
 		Connection conn = getConnectionSemi();
 		result = dao.updateContent(conn, dto);
+		close(conn);
 		return result;
 	}
 	
@@ -85,6 +86,7 @@ public class BoardService {
 		close(conn);
 		return result;
 	}
+
 	
 	
 	

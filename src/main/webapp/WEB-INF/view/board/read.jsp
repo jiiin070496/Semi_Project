@@ -22,9 +22,9 @@
 	<div>
  		<form action="<%=request.getContextPath() %>/board/update" method="post">
 	        <input type="hidden" name="bno" value="${bvo.bno }">
-	        제목:<input type="text" name="btitle" value="${bvo.btitle }">
+	        제목:<input type="text" name="btitle" value="${bvo.btitle }" readonly>
 	        <br>
-	        내용:<textarea rows="10" cols="50" name="bcontent">${bvo.bcontent }</textarea>
+	        내용:<textarea rows="10" cols="50" name="bcontent" readonly>${bvo.bcontent }</textarea>
 	        <br>
 	
 	        <c:if test="${SsLoginId eq bvo.mid}">

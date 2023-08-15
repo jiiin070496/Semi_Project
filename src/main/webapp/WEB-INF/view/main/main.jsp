@@ -29,7 +29,9 @@
 <c:choose>
 	<c:when test="${not empty SsLoginId }">
 	 <div class="login">
-<a href="${pageContext.request.contextPath}/login">로그인</a>
+<a href="${pageContext.request.contextPath}/login">
+	<button>로그인</button>
+</a>
 	</div>
 	</c:when>
 </c:choose>

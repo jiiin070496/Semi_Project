@@ -7,7 +7,54 @@
 <meta charset="UTF-8">
 <title>글 수정</title>
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-<jsp:include page="/WEB-INF/view/msg/msg.jsp"></jsp:include>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
+
+    h2 {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    form {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    form input[type="text"],
+    form textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        resize: vertical;
+    }
+
+    form input[type="submit"],
+    form button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        border: none;
+        border-radius: 3px;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    form button#btn-board-list {
+        background-color: #ccc;
+        margin-left: 10px;
+    }
+</style>
 </head>
 <body>
 <h2>글 수정</h2>
@@ -18,7 +65,7 @@
     내용: <textarea rows="10" cols="50" name="bcontent">${dto.bcontent}</textarea>
     <br>
     <input type="submit" value="수정">
-	<button type="button" id="btn-board-list">메인으로</button>
+    <button type="button" id="btn-board-list">메인으로</button>
 </form>
 
 <script>   

@@ -1,20 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>게시글 목록</title>
 <style>
-/* 
-.wrap-grid{
-	display: grid;
-	padding: 10px;
-	grid-template-columns: auto auto auto auto;
-} 
-*/
+body{
+    position: relative;
+    width: 1000px;
+    height: 600px;
+    border: 1px solid black;
+}
+ .title{
+    font-weight: bold;
+    width: 800px;
+    height: 50px;
+    border: 1px solid black;
+    margin: 5px auto;
+    text-align: center;
+}
+.list{
+    width: 800px;
+    height: 400px;
+    border: 1px solid black;
+    margin: 5px auto;
+}
 .styled-board{
-	width = 80%;
+	width = 100%;
 	border-collapse = collapse;
 	text-align: center;
 }
@@ -24,15 +38,27 @@
 .styled-board th {
 	background-color: #f2f2f2;
 }
+.footer{
+    position: absolute;
+    bottom: 0px;
+    left: 99px;
+    width: 800px;
+    height: 50px;
+    border: 1px solid black;
+    margin: 5px auto;
+    text-align: center;
+}
 </style>
 </head>
 <body>
 <div>
+<%-- 
 <c:choose>
 	<c:when test="${not empty SsLoginId }">
-		[<%= request.getSession().getAttribute("SsLoginId") %>]님 반갑습니다 <hr>
+		[<%= request.getSession().getAttribute("SsLoginId") %>]님 반갑습니다
 	</c:when>
-</c:choose>
+</c:choose> 
+--%>
 
 <script>
 	var msg = '${successFailMsg}';
@@ -41,18 +67,14 @@
 	}
 </script>
 
-<c:choose>
-	<c:when test="${not empty SsLoginId }">
-<a href="${pageContext.request.contextPath}/logout">로그아웃</a>
-	</c:when>
-	<c:otherwise>
-<a href="${pageContext.request.contextPath}/login">로그인</a>
-	</c:otherwise>
-</c:choose>
 </div>
-	<h2>게시글</h2>
-
- 	<div><a href="<%=request.getContextPath()%>/board/insert">새글등록</a></div>
+	<div class="title">
+    	<p>커뮤니티 사이트</p>
+    </div>
+ 	<c:if test="${not empty boardList }">
+    	<p>총 <c:out value="${fn:length(boardList)}" />개의 게시물이 있습니다</p>
+	</c:if>
+	<div class="list">
 		<table class="styled-board">
 			<tr>
 				<th>번호</th>
@@ -78,5 +100,21 @@
 		</c:forEach>
 	</c:if>
 		</table>
+	</div>
+	<div>
+	    <a href="<%=request.getContextPath()%>/board/insert">
+	        <button>글 등록</button>
+	    </a>
+	</div>
+<!-- 	<button type="button" id="btn-board-insert">글 등록</button>
+	
+	<script>
+	$("#btn-board-insert").click(function(){
+	    location.href="${pageContext.request.contextPath}/board/insert";
+	});    
+	</script> -->
+     <div class="footer">
+     	<p>copyright (c) 게시판</p>
+     </div>
 </body>
 </html>

@@ -67,26 +67,42 @@
 <body>
 <h2>회원가입</h2>
 <div>
-    <form action="<%=request.getContextPath() %>/member/insert.do" method="post">
+  	<form action="<%=request.getContextPath() %>/member/insert.do" method="get">
         <table>
             <tr>
                 <th>아이디</th>
-                <td><input type="text" name="mid"></td>
+                <td>
+                <input type="text" pattern="[a-z0-9]{5,20}" 
+                title="영문자 소문자, 숫자 포함 5~20자로 입력해주세요." name="mid" required>
+                </td>
             </tr>
-            <tr>
-                <th>비밀번호</th>
-                <td><input type="password" name="mpwd"></td>
-            </tr>
+      		<tr>
+    			<th>비밀번호</th>
+   				<td>
+        		<input type="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@?*])[a-zA-Z0-9!@?*]{8,30}$" 
+	        		title="영문자 대/소문자, 숫자, 특수문자(!,@,?,*)를 하나 이상 포함하여  8~30자로 입력해주세요."
+	        		 name="mpwd" 
+	        		 required>
+			    </td>
+			</tr>
             <tr>
                 <th>이름</th>
-                <td><input type="text" name="mname"></td>
+                <td>
+                <input type="text" pattern="[가-힣]{1,10}" title="한글로 다시 입력해주세요." name="mname" required>
+                </td>
             </tr>
             <tr>
                 <th>이메일</th>
-                <td><input type="text" name="memail"></td>
+                <td>
+                <input type="email" name="memail" placeholder="example@gmail.com">
+                </td>
+            </tr>
+            <tr>
+                <th>전화번호</th>
+                <td><input type="tel" pattern="[0-9]{10,11}" title="숫자만 입력해주세요." name="mphoneno" placeholder="-없이 입력해주세요." required></td>
             </tr>
         </table>
-        <button type="submit">회원등록</button>
+        <button type="submit" id="btn-member-signup">회원등록</button>
     </form>
 </div>
 </body>

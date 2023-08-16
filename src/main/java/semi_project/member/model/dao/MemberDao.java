@@ -53,8 +53,8 @@ public class MemberDao {
 		System.out.println("[Member Dao insert] dto:" + dto);
 		int result = 0;
 		String query = "insert into member "
-				+ " (mid, mpwd, mname, memail)"
-				+ " values(?, ?, ?, ?)";
+				+ " (mid, mpwd, mname, memail, mphoneno)"
+				+ " values(?, ?, ?, ?, ?)";
 		PreparedStatement pstmt = null;
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -62,6 +62,7 @@ public class MemberDao {
 			pstmt.setString(2, dto.getMpwd());
 			pstmt.setString(3, dto.getMname());
 			pstmt.setString(4, dto.getMemail());
+			pstmt.setString(5, dto.getMphoneno());
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -99,7 +100,6 @@ public class MemberDao {
 		System.out.println("[Member Dao delete] return:" + result);
 		return result;
 	}
-
 	
 	// 추가
 	// login : 성공 :1, 실패시:0  --> 암호화 적용 힘든 방식
@@ -127,6 +127,7 @@ public class MemberDao {
 		System.out.println("[Member Dao login] return:" + result);
 		return result;
 	}
+	
 	// login : mpwd를 return 함. id 존재하지 않으면 return null
 	public String login(Connection conn, String mid) {
 		System.out.println("[Member Dao login] mid:" + mid);

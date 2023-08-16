@@ -13,6 +13,7 @@ public class Member {
 	private String mpwd;
 	private String mname;
 	private String memail;
+	private String mphoneno;
 //	private List<BoardDto> boardList;
 	public Member() {
 	}
@@ -26,16 +27,17 @@ public class Member {
 		this.mname = mname;
 		this.memail = memail;
 	}
-	public Member(String mid, String mpwd, String mname, String memail) {
+	public Member(String mid, String mpwd, String mname, String memail, String mphoneno) {
 		this.mid = mid;
 		this.mpwd = mpwd;
 		this.mname = mname;
 		this.memail = memail;
+		this.mphoneno = mphoneno;
 	}
-	
 	@Override
 	public String toString() {
-		return "Member [mid=" + mid + ", mpwd=" + mpwd + ", mname=" + mname + ", memail=" + memail + "]";
+		return "Member [mid=" + mid + ", mpwd=" + mpwd + ", mname=" + mname + ", memail=" + memail + ", mphoneno="
+				+ mphoneno + "]";
 	}
 	public String getMid() {
 		return mid;
@@ -61,5 +63,13 @@ public class Member {
 	public void setMemail(String memail) {
 		this.memail = memail;
 	}
+	public String getMphoneno() {
+		return mphoneno;
+	}
+	public void setMphoneno(String mphoneno) {
+		this.mphoneno = mphoneno;
+	}
+	
+
 
 }

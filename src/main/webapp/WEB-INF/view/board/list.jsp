@@ -96,9 +96,7 @@ body {
             게시글을 읽으시려면 로그인이 필요합니다.
         </c:otherwise>
     </c:choose>
-    
-
-	
+    	
     <script>
         var msg = '${successFailMsg}';
         if (msg) {

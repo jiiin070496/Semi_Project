@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 public class MemberInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// session 객체에 실린 msg 처리
 		if(request.getSession().getAttribute("msg") instanceof String) {
 			String msg = (String)request.getSession().getAttribute("msg");

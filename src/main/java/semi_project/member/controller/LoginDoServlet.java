@@ -21,12 +21,13 @@ public class LoginDoServlet extends HttpServlet {
 		Member vo = new Member(mid, mpwd);
 		String result = new MemberService().login(mid);
 		String sendUrl = request.getContextPath(); 
-		if(mpwd == null) {
-			// 아이디 없음
-		} else if(mpwd.equals(result)) {
+//		if(mpwd == null) {
+//			// 아이디 없음
+//		}
+		if(mpwd.equals(result)) {
 			System.out.println("로그인 성공");
 			request.setAttribute("loginId", mid);
-			request.getSession().setAttribute("successFailMsg", "로그인성공");
+			request.getSession().setAttribute("successFailMsg", "로그인되었습니다");
 			request.getSession().setAttribute("SsLoginId", mid);
 			sendUrl += "/board/list"; 
 		} else {

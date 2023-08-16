@@ -1,4 +1,3 @@
-<link href="${pageContext.request.contextPath }/resources/css/reset.css" rel="stylesheet">
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -11,7 +10,7 @@
         font-family: Arial, sans-serif;
         margin: 0;
         padding: 0;
-        background-color: #f4f4f4;
+        background-color: #f2f2f2;
     }
 
     .container {
@@ -101,7 +100,7 @@
     </form>
     <div class="button-container">
         <div class="signup-button">
-            <form action="<%=request.getContextPath() %>/member/insert" method="post">
+            <form action="<%=request.getContextPath() %>/member/insert" method="get">
                 <button type="submit">회원가입</button>
             </form>
         </div>

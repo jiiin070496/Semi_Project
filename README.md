@@ -16,3 +16,12 @@
 * Framework / Library : Ajax, jQuery 3.7.0, ojdbc8, jstl 1.2
 * Prototyping Tool : Kakao Oven
 * ERD Tool : ERD Cloud
+
+### 구현기능
+* 로그인 및 회원가입
+  - 유효성 체크
+* 게시판페이지
+  - 게시물 등록
+  - 게시물 삭제
+  - 게시물 수정
+  - 게시물에 대한 댓글 등록, 수정 및 삭제

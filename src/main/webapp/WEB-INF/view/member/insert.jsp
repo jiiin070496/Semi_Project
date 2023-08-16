@@ -6,7 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
-<jsp:include page="/WEB-INF/view/msg/msg.jsp"></jsp:include>
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -63,6 +62,12 @@
         cursor: pointer;
     }
 </style>
+<script>
+    var msg = '${sessionScope.successFailMsg}';
+    if (msg && msg.trim() !== "") {
+        alert(msg);
+    }
+</script>
 </head>
 <body>
 <h2>회원가입</h2>

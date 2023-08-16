@@ -25,7 +25,7 @@ public class MemberInsertDoServlet extends HttpServlet {
 //    }
 	
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("[-----냄쿵 MemberInsert doPost!!-----]");
+		System.out.println("[-----냄쿵 MemberInsert doGet!!-----]");
 		String mid = request.getParameter("mid");
 		String mpwd = request.getParameter("mpwd");
 		String mname = request.getParameter("mname");
@@ -35,12 +35,12 @@ public class MemberInsertDoServlet extends HttpServlet {
 		System.out.println("[insert servlet] "+vo);
 		
 		int result = service.insert(vo);
-		if(result < 1) {
-			request.getSession().setAttribute("msg", "회원가입에 실패했습니다.");
-			response.sendRedirect(request.getContextPath()+"/member/login");
-		}else {
-			request.getSession().setAttribute("msg", mname+"님 회원가입 완료되었습니다.");
-			response.sendRedirect(request.getContextPath()+"/board/list");
+		if (result == 0) {
+		    request.getSession().setAttribute("sfMsg", "회원가입에 실패했습니다.");
+		    response.sendRedirect(request.getContextPath() + "/member/login");
+		} else {
+		    request.getSession().setAttribute("sfMsg", mname + "님 회원가입 완료되었습니다.\n로그인해주세요.");
+		    response.sendRedirect(request.getContextPath() + "/member/insert"); // 이 부분 수정
 		}
 	}
 	

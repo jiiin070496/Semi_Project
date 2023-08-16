@@ -13,10 +13,10 @@ public class MemberInsertServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// session 객체에 실린 msg 처리
-		if(request.getSession().getAttribute("msg") instanceof String) {
-			String msg = (String)request.getSession().getAttribute("msg");
-			request.getSession().removeAttribute("msg");
-			request.setAttribute("msg", msg);
+		if(request.getSession().getAttribute("sfMsg") instanceof String) {
+			String msg = (String)request.getSession().getAttribute("sfMsg");
+			request.getSession().removeAttribute("sfMsg");
+			request.setAttribute("sfMsg", msg);
 		}
 		request.getRequestDispatcher("/WEB-INF/view/member/insert.jsp").forward(request, response);
 	}

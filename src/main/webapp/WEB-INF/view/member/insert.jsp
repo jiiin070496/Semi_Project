@@ -62,12 +62,6 @@
         cursor: pointer;
     }
 </style>
-<script>
-    var msg = '${sessionScope.successFailMsg}';
-    if (msg && msg.trim() !== "") {
-        alert(msg);
-    }
-</script>
 </head>
 <body>
 <h2>회원가입</h2>
@@ -110,5 +104,11 @@
         <button type="submit" id="btn-member-signup">회원등록</button>
     </form>
 </div>
+<script>
+	var msg = '${sfMsg}';
+	if (msg) {
+	    alert(msg);
+	}
+</script>
 </body>
 </html>

@@ -39,8 +39,8 @@ public class MemberInsertDoServlet extends HttpServlet {
 		    request.getSession().setAttribute("sfMsg", "회원가입에 실패했습니다.");
 		    response.sendRedirect(request.getContextPath() + "/member/login");
 		} else {
-		    request.getSession().setAttribute("sfMsg", mname + "님 회원가입 완료되었습니다.\n로그인해주세요.");
-		    response.sendRedirect(request.getContextPath() + "/member/insert"); // 이 부분 수정
+		    request.getSession().setAttribute("sfMsg", mname + "님 회원가입 완료되었습니다.");
+		    response.sendRedirect(request.getContextPath() + "/board/list");
 		}
 	}
 	

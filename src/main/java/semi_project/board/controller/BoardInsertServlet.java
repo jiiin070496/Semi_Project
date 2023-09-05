@@ -82,6 +82,10 @@ public class BoardInsertServlet extends HttpServlet {
 		System.out.println(attachFileList);
 		
 		String mid = (String)request.getSession().getAttribute("SsLoginId");
+//		if(mid == null || mid.equals("")) {
+//			request.getSession().setAttribute("msg", "로그인해야 글 등록가능");
+//			response.sendRedirect(request.getContextPath()+"/login")
+//		}
 		
 		String bnoStr = multiReq.getParameter("bno");
 		System.out.println("bnoStr: "+ bnoStr);

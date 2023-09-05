@@ -46,7 +46,6 @@ public class BoardDao {
 			close(rs);
 			close(pstmt);
 		}
-//		System.out.println("[Board Dao selectList] return:" + result);
 		return result;
 	}
 

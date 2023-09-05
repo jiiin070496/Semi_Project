@@ -14,7 +14,8 @@ public class Member {
 	private String mname;
 	private String memail;
 	private String mphoneno;
-//	private List<BoardDto> boardList;
+	private List<BoardDto> boardList;
+	
 	public Member() {
 	}
 	public Member(String mid, String mpwd) {
